@@ -1,0 +1,100 @@
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10% 10%;
+    width: 80%;
+    height: 400px;
+}
+
+#btn1{
+    margin: 10% 10%;
+    width: 200px;
+    height: 50px;
+}
+#btn2{
+    margin: 10% 10%;
+    width: 100px;
+    height: 50px;
+}
+
+/* Event Handlers Defined on DOM Elements (Chat Room) */
+#chat-rooms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10%;
+    margin: 10% 10%;
+    width: 80%;
+    height: 600px;
+}
+#messages1, #messages2{
+    width: 100%;
+    height: 500px;
+    margin-bottom: 5px;
+    background-color: rgb(200, 164, 119);
+    font-size:large;
+    color: rgb(19, 19, 117);
+}
+#btn4-1, #btn4-2{
+    background: rgb(198, 68, 68);
+    border-radius: 10%;
+}
+#text-input1:focus {
+    border: 2px solid blue;
+  }
+#text-input2:focus {
+    border: 2px solid blue;
+  }
+
+/* Events using eventListeners */
+
+  #soccer {
+    width: 100%;
+    height: 650px;
+    background-image: url('Assets_Football/Field.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  #btn5{
+background: rgb(198, 68, 68);
+border-radius: 10%;
+}
+
+#player{
+ position: relative;
+ width: 5%;
+}
+/* Super Mario*/
+#super-mario {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 30px auto;
+    width: 1200px;
+    height: 700px;
+    background-image: url('Super_Mario/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+#mario{
+    width: 15%;
+    height: 15%;
+    margin-bottom: 120px;
+}
+/* Events propagation, stopping and preventing default*/
+#images{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:20px
+}
+#img2, #img3{
+  width: 300px;
+  height: 200px;
+}
