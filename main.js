@@ -12,25 +12,35 @@ function toggleBgcolor(){
 }
 
 ////////////////Advance///////////////////////
+const exercise2 = document.getElementById("ex2");
+const btn3 = document.getElementById("btn3");
+const btn2 = document.getElementById("btn2");
 var toggleInterval;
 
-    function startToggle() {
-      toggleInterval = setInterval(toggleColor, 1000);
-    }
-
-    function stopToggle() {
-      clearInterval(toggleInterval);
-    }
-
-    function toggleColor() {
-    var exercise2 = document.getElementById("ex2");
-
-      if (exercise2.style.backgroundColor == "blue") {
-        exercise2.style.backgroundColor = "green";
-      } else {
-        exercise2.style.backgroundColor = "blue";
+btn2.addEventListener('click',  function () {
+if (btn2.textContent == "Turn off") {
+  btn2.textContent = "Turn on";
+  btn2.style.backgroundColor="Aqua";
+  btn2.style.color="Black";
+  clearInterval(toggleInterval);
+} else {
+  btn2.textContent = "Turn off";
+  clearInterval(toggleInterval);
+  toggleInterval = setInterval(toggleColor, 1000);
+  btn2.style.backgroundColor="rgb(198, 68, 68)";
       }
-    }
+})
+btn3.addEventListener('click',  function () {
+  clearInterval(toggleInterval);
+  toggleInterval = setInterval(toggleColor, 1000);
+})
+function toggleColor() {
+  if (exercise2.style.backgroundColor == "blue") {
+      exercise2.style.backgroundColor = "green";
+  } else {
+      exercise2.style.backgroundColor = "blue";
+      }
+}
 
 ////Event Handlers Defined on DOM Elements (Chat Room)///////////
 ////////////input1////////////
@@ -62,15 +72,17 @@ var player = document.getElementById('player');
 var button = document.getElementById('btn5');
 
 button.addEventListener('click', () => {
-  if (button.getAttribute('disabled') === null) {
-    button.setAttribute('disabled', true);
+  if (button.textContent == "Stop Moving") {
+    button.textContent = "Start Moving";
+    button.style.backgroundColor="Blue";
   } else {
-    button.removeAttribute('disabled');
+    button.textContent = "Stop Moving";
+    button.style.backgroundColor="Red";
   }
 });
 
 field.addEventListener("click", function(event) {
-  if (button.getAttribute('disabled') === null) {
+  if (button.textContent == "Stop Moving") {
   var x = event.clientX;
   var y = event.clientY;
 
@@ -85,7 +97,7 @@ var groundInterval;
 var currentBackgroundPosition = '';
 
     document.addEventListener("keydown", function(event) {
-      if (event.code === "ArrowRight"&& !gifRunning) {
+      if (event.code === "ArrowRight" && !gifRunning) {
         gifRunning = true;
         mario.src = "Super_Mario/mario_running.gif";
 
@@ -109,15 +121,39 @@ var currentBackgroundPosition = '';
     });
 
 
+    document.addEventListener('contextmenu', function() {
+      if (!gifRunning) {
+        gifRunning = true;
+        mario.src = "Super_Mario/mario_running.gif";
+
+        groundInterval = setInterval(function() {
+          var imageElement = document.getElementById('super-mario');
+          if(imageElement.style.backgroundPosition == currentBackgroundPosition){
+          imageElement.style.backgroundPosition = currentBackgroundPosition -10 + 'px';
+          }
+          else{
+            imageElement.style.backgroundPosition = currentBackgroundPosition;
+          }
+        }, 1000 / 20);
+      }
+    });
+    document.addEventListener('mousedown', function() {
+        mario.src ="Super_Mario/mario.png";
+        clearInterval(groundInterval);
+        gifRunning = false;
+      });
+
 ////////////////Events propagation, stopping and preventing default
 const images = document.querySelectorAll('img');
 
 images.forEach(image => {
   image.addEventListener('click', event => {
     if (image.offsetWidth === 300) {
-      image.style.border = '1px solid red';
-    } else {
-      event.stopPropagation();
+      if(image.style.border == '2px solid red'){
+        image.style.border = '0px solid red';}
+      else{
+        image.style.border = '2px solid red';
+      }
     }
   });
 });
